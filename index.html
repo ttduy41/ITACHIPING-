@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ItachiPing Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-color: #00d2ff;
+            --text-main: #ffffff;
+            --text-dim: #8b949e;
+            --success-green: #2ecc71;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 15px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .btn-download {
+            background-color: #f0f6fc;
+            color: #1f2328;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .status-bar {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success-green);
+            padding: 12px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid #30363d;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .icon-key-bg {
+            background-color: #1c2128;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-right: 15px;
+            border: 1px solid #30363d;
+        }
+
+        .title-group h2 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .title-group p {
+            margin: 5px 0 0;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        .expiry {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #f39c12;
+            font-size: 14px;
+            border: 1px solid #f39c12;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .key-input-area {
+            background-color: #0d1117;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #30363d;
+        }
+
+        .key-input-area label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        #keyCode {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            border: 1px solid #30363d;
+        }
+
+        .btn-copy {
+            background-color: #00d2ff;
+            color: #000;
+            border: none;
+        }
+
+        .btn-refresh {
+            background-color: #1c2128;
+            color: var(--text-main);
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .info-box {
+            background-color: #1c2128;
+            padding: 15px 10px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #30363d;
+        }
+
+        .info-box i {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blue-icon { color: #3498db; }
+        .green-icon { color: #2ecc71; }
+        .purple-icon { color: #9b59b6; }
+
+        .info-box span {
+            font-size: 11px;
+            color: var(--text-dim);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-box b {
+            font-size: 13px;
+        }
+
+        .guide-section {
+            border-top: 1px solid #30363d;
+            padding-top: 25px;
+        }
+
+        .guide-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f39c12;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .step-num {
+            color: #f39c12;
+            background-color: rgba(243, 156, 18, 0.1);
+            min-width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .step-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-dim);
+        }
+
+        .highlight-text { color: var(--text-main); font-weight: 600; }
+        .highlight-box {
+            background-color: #30363d;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #00d2ff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo">
+            <i class="fas fa-bolt"></i> ItachiPing
+        </div>
+        <button class="btn-download">
+            <i class="fas fa-download"></i> Tải Về Ngay
+        </button>
+    </header>
+
+    <div class="status-bar">
+        <i class="fas fa-check-circle"></i> Xác thực thành công • Key hợp lệ
+    </div>
+
+    <div class="key-card">
+        <div class="card-header">
+            <div class="icon-key-bg">
+                <i class="fas fa-key"></i>
+            </div>
+            <div class="title-group">
+                <h2>Key Kích Hoạt</h2>
+                <p>Itachi Ping Premium • Bản Quyền Cá Nhân</p>
+            </div>
+            <div class="expiry">
+                <i class="far fa-clock"></i> 24h
+            </div>
+        </div>
+
+        <div class="key-input-area">
+            <label><i class="far fa-keyboard"></i> MÃ KÍCH HOẠT</label>
+            <p id="keyCode">818EE19BE19EDBA2</p>
+        </div>
+
+        <button class="btn btn-copy" onclick="copyKey()">
+            <i class="far fa-copy"></i> Sao Chép Key
+        </button>
+        <button class="btn btn-refresh" onclick="generateNewKey()">
+            <i class="fas fa-sync-alt"></i> Lấy Key Mới
+        </button>
+
+        <div class="info-row">
+            <div class="info-box">
+                <i class="fab fa-android blue-icon"></i>
+                <span>Nền tảng</span>
+                <b>Android 7+</b>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-check-circle green-icon"></i>
+                <span>Trạng thái</span>
+                <b>Hợp lệ</b>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-th-large purple-icon"></i>
+                <span>Chế độ</span>
+                <b>7 Modes</b>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <div class="guide-title">
+                <i class="fas fa-info-circle"></i> HƯỚNG DẪN SỬ DỤNG KEY
+            </div>
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-text">Mở ứng dụng <span class="highlight-text">Itachi Ping</span> trên thiết bị Android.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-text">Nhấn vào <span class="highlight-box">Nhập Key</span> hoặc biểu tượng <span class="highlight-text">khóa</span> ở màn hình chính.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-text">Dán key vừa sao chép, nhấn <span class="highlight-box">Xác Nhận</span> để mở khóa toàn bộ tính năng.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyKey() {
+        const key = document.getElementById("keyCode").innerText;
+        navigator.clipboard.writeText(key).then(() => {
+            alert("Đã sao chép: " + key);
+        });
+    }
+
+    function generateNewKey() {
+        const chars = "0123456789ABCDEF";
+        let newKey = "";
+        for (let i = 0; i < 16; i++) {
+            newKey += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById("keyCode").innerText = newKey;
+    }
+</script>
+
+</body>
+          </html>
+          
